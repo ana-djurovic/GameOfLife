@@ -27,4 +27,3 @@ class LogicalGrid:
         # Change dead cells to alive cells corresponding to the json file
         for item in data:
             self.datas[item['x']][item['y']] = '*'
-        print(self.datas)

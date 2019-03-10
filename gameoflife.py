@@ -1,4 +1,4 @@
-from logicalgrid import LogicalGrid
+from displaygrid import DisplayGrid
 
 if __name__ == "__main__":
-    new_grid = LogicalGrid()
+    new_displaygrid = DisplayGrid()
