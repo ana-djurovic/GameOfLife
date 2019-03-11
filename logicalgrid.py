@@ -5,8 +5,8 @@ import json
 class LogicalGrid:
     def __init__(self):
         # Initialization of row and column
-        self.row = 8
-        self.column = 6
+        self.row = 40
+        self.column = 35
 
         # Initialization of empty grid
         self.datas = []
@@ -22,7 +22,7 @@ class LogicalGrid:
 
     def read_file_case(self):
         # Load a json file into a list of alive cell
-        with open('test_case.json', 'r') as f:
+        with open('gilder_gun.json', 'r') as f:
             data = json.load(f)
 
         # Change dead cells to alive cells corresponding to the json file
@@ -47,7 +47,7 @@ class LogicalGrid:
         is_finish = False
         if update_grid == self.datas:
             is_finish = True
-        self.datas = update_grid
+        self.datas = copy.deepcopy(update_grid)
         return is_finish
 
     def update_alive_cell(self, i, j, datas_to_update):
