@@ -1,6 +1,13 @@
-[
+{
+   "configuration" : [
+          {"row":8, "column":6, "speed":1, "cell_size":10}
+    ],
+
+    "cells_alive":
+    [
 	{"x":5,"y":2},
 	{"x":3,"y":5},
 	{"x":7,"y":1},
 	{"x":5,"y":3}
-]
+    ]   
+}

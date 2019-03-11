@@ -80,8 +80,6 @@ class LogicalGridTest(unittest.TestCase):
 
 if __name__ == "__main__":
     logicalgrid_t = LogicalGrid()
-    logicalgrid_t.row = 11
-    logicalgrid_t.column = 7
     logicalgrid_t.enter_json_file ='test.json'
     logicalgrid_t.read_file_case()
     unittest.main()

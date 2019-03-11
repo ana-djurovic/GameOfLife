@@ -4,14 +4,19 @@ import json
 
 class LogicalGrid:
     def __init__(self):
-        # Initialization of row and column
-        self.row = 35
-        self.column = 40
+        # Json File for input
         self.enter_json_file = 'gilder_gun.json'
+
+        # Initialization of row and column
+        self.row = 0
+        self.column = 0
+
+        # Inizialization speed executation and size of a cell
+        self.speed = 0
+        self.cell_size = 0
 
         # Initialization of empty grid
         self.datas = []
-        self.initialize_empty_list_grid()
 
         # Fill the grid
         self.read_file_case()
@@ -25,9 +30,19 @@ class LogicalGrid:
         # Load a json file into a list of alive cell
         with open(self.enter_json_file, 'r') as f:
             data = json.load(f)
+        # Update row column values
+        self.row = data['configuration'][0]["row"]
+        self.column = data['configuration'][0]["column"]
+
+        #Update speed and cell_size
+        self.speed = data['configuration'][0]["speed"]
+        self.cell_size = data['configuration'][0]["cell_size"]
+
+        self.initialize_empty_list_grid()
 
         # Change dead cells to alive cells corresponding to the json file
-        for item in data:
+        #
+        for item in data["cells_alive"]:
             self.datas[item['x']][item['y']] = '*'
 
     def update_datas(self):
