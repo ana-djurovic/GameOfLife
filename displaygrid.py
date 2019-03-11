@@ -26,13 +26,13 @@ class DisplayGrid:
         # Canvas creation
         self.canvas = Canvas(
             self.grid,
-            width=self.logicalgrid.row*self.cell_size,
-            height=self.logicalgrid.column*self.cell_size,
+            width=self.logicalgrid.column*self.cell_size,
+            height=self.logicalgrid.row*self.cell_size,
             bg='white')
+
         self.canvas.pack(padx=5, pady=5)
 
         # Initialization of the interface
-        self.create_grid()
         self.initialize()
         self.fill_grid()
         self.window.mainloop()
@@ -51,17 +51,17 @@ class DisplayGrid:
             for j in range(self.logicalgrid.column):
                 if self.logicalgrid.datas[i][j] == '*':
                     self.canvas.create_rectangle\
-                        (i*self.cell_size,
-                         j*self.cell_size,
-                         (i*self.cell_size)+self.cell_size,
+                        (j*self.cell_size,
+                         i*self.cell_size,
                          (j*self.cell_size)+self.cell_size,
+                         (i*self.cell_size)+self.cell_size,
                          fill='black')
                 elif self.logicalgrid.datas[i][j] == '.':
                     self.canvas.create_rectangle\
-                        (i*self.cell_size,
-                         j*self.cell_size,
-                         (i*self.cell_size)+self.cell_size,
+                        (j*self.cell_size,
+                         i*self.cell_size,
                          (j*self.cell_size)+self.cell_size,
+                         (i*self.cell_size)+self.cell_size,
                          fill='white')
                 else:
                     raise Exception("Wrong cell value")
@@ -69,10 +69,14 @@ class DisplayGrid:
     def create_grid(self):
         """ Delete last canvas and create new one """
         self.canvas.delete(ALL)
-        for x in range(0, self.logicalgrid.row*self.cell_size, self.cell_size):
-            self.canvas.create_line(x, 0, x, self.logicalgrid.column*10, width=1, fill='black')
-        for y in range(0, self.logicalgrid.column*self.cell_size, self.cell_size):
-            self.canvas.create_line( 0, y, self.logicalgrid.row*10, y, width=1, fill='black')
+
+        # Create vertical lines
+        for x in range(0, self.logicalgrid.column * self.cell_size, self.cell_size):
+            self.canvas.create_line(x, 0, x, self.logicalgrid.row * 10, width=1, fill='black')
+
+        # Create horizontal lines
+        for y in range(0, self.logicalgrid.row * self.cell_size, self.cell_size):
+            self.canvas.create_line(0, y, self.logicalgrid.column * 10, y, width=1, fill='black')
 
     def play(self):
         """ Update grid datas """
